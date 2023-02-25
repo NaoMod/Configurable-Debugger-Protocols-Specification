@@ -1,0 +1,73 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Arguments": {
+            "properties": {
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "BreakpointType": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isEnabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "targetElementTypeId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "id",
+                "isEnabled",
+                "name",
+                "targetElementTypeId"
+            ],
+            "type": "object"
+        },
+        "GetBreakpointTypesResponse": {
+            "properties": {
+                "breakpointTypes": {
+                    "items": {
+                        "$ref": "#/definitions/BreakpointType"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "breakpointTypes"
+            ],
+            "type": "object"
+        },
+        "SwitchBreakpointTypeArgs": {
+            "properties": {
+                "breakpointTypeId": {
+                    "type": "string"
+                },
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "breakpointTypeId",
+                "sourceFile"
+            ],
+            "type": "object"
+        }
+    }
+}
+

@@ -1,0 +1,288 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Arguments": {
+            "properties": {
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "BreakpointParameter": {
+            "properties": {
+                "isMultivalued": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "objectType": {
+                    "type": "string"
+                },
+                "primitiveType": {
+                    "$ref": "#/definitions/PrimitiveType"
+                }
+            },
+            "required": [
+                "isMultivalued",
+                "name"
+            ],
+            "type": "object"
+        },
+        "BreakpointType": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "items": {
+                        "$ref": "#/definitions/BreakpointParameter"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "description",
+                "id",
+                "name",
+                "parameters"
+            ],
+            "type": "object"
+        },
+        "CheckBreakpointArguments": {
+            "properties": {
+                "elementId": {
+                    "type": "string"
+                },
+                "sourceFile": {
+                    "type": "string"
+                },
+                "typeId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "elementId",
+                "sourceFile",
+                "typeId"
+            ],
+            "type": "object"
+        },
+        "CheckBreakpointResponse": {
+            "properties": {
+                "isActivated": {
+                    "type": "boolean"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "isActivated"
+            ],
+            "type": "object"
+        },
+        "GetBreakpointTypesResponse": {
+            "properties": {
+                "breakpointTypes": {
+                    "items": {
+                        "$ref": "#/definitions/BreakpointType"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "breakpointTypes"
+            ],
+            "type": "object"
+        },
+        "GetRuntimeStateArguments": {
+            "properties": {
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "GetRuntimeStateResponse": {
+            "properties": {
+                "runtimeStateRoot": {
+                    "$ref": "#/definitions/ModelElement"
+                }
+            },
+            "required": [
+                "runtimeStateRoot"
+            ],
+            "type": "object"
+        },
+        "InitArguments": {
+            "additionalProperties": {},
+            "properties": {
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "InitResponse": {
+            "properties": {
+                "isExecutionDone": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "isExecutionDone"
+            ],
+            "type": "object"
+        },
+        "Location": {
+            "properties": {
+                "column": {
+                    "type": "number"
+                },
+                "endColumn": {
+                    "type": "number"
+                },
+                "endLine": {
+                    "type": "number"
+                },
+                "line": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "column",
+                "endColumn",
+                "endLine",
+                "line"
+            ],
+            "type": "object"
+        },
+        "ModelElement": {
+            "properties": {
+                "attributes": {
+                    "additionalProperties": {},
+                    "type": "object"
+                },
+                "children": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/ModelElement"
+                            },
+                            {
+                                "items": {
+                                    "$ref": "#/definitions/ModelElement"
+                                },
+                                "type": "array"
+                            }
+                        ]
+                    },
+                    "type": "object"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/Location"
+                },
+                "refs": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "type": "object"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "attributes",
+                "children",
+                "id",
+                "refs",
+                "type"
+            ],
+            "type": "object"
+        },
+        "ParseArguments": {
+            "properties": {
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "ParseResponse": {
+            "properties": {
+                "astRoot": {
+                    "$ref": "#/definitions/ModelElement"
+                }
+            },
+            "required": [
+                "astRoot"
+            ],
+            "type": "object"
+        },
+        "PrimitiveType": {
+            "enum": [
+                "boolean",
+                "number",
+                "string"
+            ],
+            "type": "string"
+        },
+        "StepArguments": {
+            "properties": {
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
+        "StepResponse": {
+            "properties": {
+                "isExecutionDone": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "isExecutionDone"
+            ],
+            "type": "object"
+        }
+    }
+}
+
