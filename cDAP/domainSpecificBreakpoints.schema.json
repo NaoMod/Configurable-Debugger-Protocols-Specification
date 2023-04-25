@@ -39,6 +39,24 @@
             ],
             "type": "object"
         },
+        "EnableBreakpointTypeArgs": {
+            "properties": {
+                "breakpointTypeIds": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "sourceFile": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "breakpointTypeIds",
+                "sourceFile"
+            ],
+            "type": "object"
+        },
         "GetBreakpointTypesResponse": {
             "properties": {
                 "breakpointTypes": {
@@ -50,21 +68,6 @@
             },
             "required": [
                 "breakpointTypes"
-            ],
-            "type": "object"
-        },
-        "SwitchBreakpointTypeArgs": {
-            "properties": {
-                "breakpointTypeId": {
-                    "type": "string"
-                },
-                "sourceFile": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "breakpointTypeId",
-                "sourceFile"
             ],
             "type": "object"
         }
