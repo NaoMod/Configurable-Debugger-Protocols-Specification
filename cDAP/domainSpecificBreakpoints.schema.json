@@ -39,7 +39,7 @@
             ],
             "type": "object"
         },
-        "EnableBreakpointTypeArgs": {
+        "EnableBreakpointTypesArgs": {
             "properties": {
                 "breakpointTypeIds": {
                     "items": {
