@@ -4,6 +4,7 @@
         "Arguments": {
             "properties": {
                 "sourceFile": {
+                    "description": "Source file targeted by the service call.",
                     "type": "string"
                 }
             },
@@ -13,18 +14,23 @@
             "type": "object"
         },
         "BreakpointParameter": {
+            "description": "Parameter required by a breakpoint type.",
             "properties": {
                 "isMultivalued": {
+                    "description": "True is the parameter is a collection, false otherwise.",
                     "type": "boolean"
                 },
                 "name": {
+                    "description": "Name of the parameter.",
                     "type": "string"
                 },
                 "objectType": {
+                    "description": "Object type of the parameter, as defined in {@link ModelElement.type}.\nExactly one of `primitiveType` and `objectType` must be set.",
                     "type": "string"
                 },
                 "primitiveType": {
-                    "$ref": "#/definitions/PrimitiveType"
+                    "$ref": "#/definitions/PrimitiveType",
+                    "description": "Primitive type of the parameter.\nExactly one of `primitiveType` and `objectType` must be set."
                 }
             },
             "required": [
@@ -34,17 +40,22 @@
             "type": "object"
         },
         "BreakpointType": {
+            "description": "Breakpoint type defined by the language runtime.",
             "properties": {
                 "description": {
+                    "description": "Human-readable description of the breakpoint type.",
                     "type": "string"
                 },
                 "id": {
+                    "description": "Unique identifier of the breakpoint type.",
                     "type": "string"
                 },
                 "name": {
+                    "description": "Human-readable name of the breakpoint type.",
                     "type": "string"
                 },
                 "parameters": {
+                    "description": "Parameters needed to evaluate a breakpoint of this type.",
                     "items": {
                         "$ref": "#/definitions/BreakpointParameter"
                     },
@@ -62,12 +73,15 @@
         "CheckBreakpointArguments": {
             "properties": {
                 "elementId": {
+                    "description": "Identifier of the model element.",
                     "type": "string"
                 },
                 "sourceFile": {
+                    "description": "Source file targeted by the service call.",
                     "type": "string"
                 },
                 "typeId": {
+                    "description": "Identifier of the breakpoint type.",
                     "type": "string"
                 }
             },
@@ -81,9 +95,11 @@
         "CheckBreakpointResponse": {
             "properties": {
                 "isActivated": {
+                    "description": "True if the breakpoint is activated, false otherwise.",
                     "type": "boolean"
                 },
                 "message": {
+                    "description": "Human-readable message to describe the cause of activation.\nShould only be set if `isActivated` is true.",
                     "type": "string"
                 }
             },
@@ -95,6 +111,7 @@
         "GetBreakpointTypesResponse": {
             "properties": {
                 "breakpointTypes": {
+                    "description": "Breakpoint types defined by the language runtime.",
                     "items": {
                         "$ref": "#/definitions/BreakpointType"
                     },
@@ -109,6 +126,7 @@
         "GetRuntimeStateArguments": {
             "properties": {
                 "sourceFile": {
+                    "description": "Source file targeted by the service call.",
                     "type": "string"
                 }
             },
@@ -120,7 +138,8 @@
         "GetRuntimeStateResponse": {
             "properties": {
                 "runtimeStateRoot": {
-                    "$ref": "#/definitions/ModelElement"
+                    "$ref": "#/definitions/ModelElement",
+                    "description": "Root of the runtime state."
                 }
             },
             "required": [
@@ -132,6 +151,7 @@
             "additionalProperties": {},
             "properties": {
                 "sourceFile": {
+                    "description": "Source file targeted by the service call.",
                     "type": "string"
                 }
             },
@@ -143,6 +163,7 @@
         "InitResponse": {
             "properties": {
                 "isExecutionDone": {
+                    "description": "True if the execution is done, false otherwise.",
                     "type": "boolean"
                 }
             },
@@ -152,17 +173,22 @@
             "type": "object"
         },
         "Location": {
+            "description": "Location in a textual source file.",
             "properties": {
                 "column": {
+                    "description": "Starting column.",
                     "type": "number"
                 },
                 "endColumn": {
+                    "description": "End column.",
                     "type": "number"
                 },
                 "endLine": {
+                    "description": "End line.",
                     "type": "number"
                 },
                 "line": {
+                    "description": "Starting line.",
                     "type": "number"
                 }
             },
@@ -175,9 +201,11 @@
             "type": "object"
         },
         "ModelElement": {
+            "description": "Element of the AST or runtime state.",
             "properties": {
                 "attributes": {
                     "additionalProperties": {},
+                    "description": "Attributes with primitive values.",
                     "type": "object"
                 },
                 "children": {
@@ -194,13 +222,16 @@
                             }
                         ]
                     },
+                    "description": "Containment relations with other elements.",
                     "type": "object"
                 },
                 "id": {
+                    "description": "Unique identifier of the element.",
                     "type": "string"
                 },
                 "location": {
-                    "$ref": "#/definitions/Location"
+                    "$ref": "#/definitions/Location",
+                    "description": "Location of the element in its original source file."
                 },
                 "refs": {
                     "additionalProperties": {
@@ -216,9 +247,11 @@
                             }
                         ]
                     },
+                    "description": "References to other elements.",
                     "type": "object"
                 },
                 "type": {
+                    "description": "Type of the element.",
                     "type": "string"
                 }
             },
@@ -234,6 +267,7 @@
         "ParseArguments": {
             "properties": {
                 "sourceFile": {
+                    "description": "Source file targeted by the service call.",
                     "type": "string"
                 }
             },
@@ -245,7 +279,8 @@
         "ParseResponse": {
             "properties": {
                 "astRoot": {
-                    "$ref": "#/definitions/ModelElement"
+                    "$ref": "#/definitions/ModelElement",
+                    "description": "Root of the AST."
                 }
             },
             "required": [
@@ -254,6 +289,7 @@
             "type": "object"
         },
         "PrimitiveType": {
+            "description": "Primitive type of a value.",
             "enum": [
                 "boolean",
                 "number",
@@ -264,6 +300,7 @@
         "StepArguments": {
             "properties": {
                 "sourceFile": {
+                    "description": "Source file targeted by the service call.",
                     "type": "string"
                 }
             },
@@ -275,6 +312,7 @@
         "StepResponse": {
             "properties": {
                 "isExecutionDone": {
+                    "description": "True if the execution is done, false otherwise.",
                     "type": "boolean"
                 }
             },
