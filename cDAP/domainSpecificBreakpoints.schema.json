@@ -1,6 +1,18 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "Arguments": {
+            "properties": {
+                "sourceFile": {
+                    "description": "Source file targeted by the service call.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sourceFile"
+            ],
+            "type": "object"
+        },
         "BreakpointType": {
             "description": "Breakpoint type defined by the language runtime.",
             "properties": {
@@ -31,6 +43,26 @@
                 "isEnabled",
                 "name",
                 "targetElementTypeId"
+            ],
+            "type": "object"
+        },
+        "EnableBreakpointTypesArgs": {
+            "properties": {
+                "breakpointTypeIds": {
+                    "description": "Breakpoint types to enable.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "sourceFile": {
+                    "description": "Source file targeted by the service call.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "breakpointTypeIds",
+                "sourceFile"
             ],
             "type": "object"
         },
